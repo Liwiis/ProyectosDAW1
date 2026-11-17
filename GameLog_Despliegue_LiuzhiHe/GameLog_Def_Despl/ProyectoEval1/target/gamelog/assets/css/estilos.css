@@ -1,0 +1,668 @@
+@font-face {
+    font-family: "DM Sans";
+    src: url("../fonts/dm-sans.woff2") format("woff2");
+    font-style: normal;
+    font-weight: 400 800;
+    font-display: swap;
+}
+
+/* Base, paleta y tipografía compartidas */
+:root {
+    color-scheme: dark;
+    --fondo: #0f0a19;
+    --superficie: #1f1433;
+    --borde: #33224b;
+    --borde-control: #816a9e;
+    --texto: #f5f3ff;
+    --texto-secundario: #c4b5fd;
+    --acento: #c084fc;
+    --boton: #7c3aed;
+    --boton-hover: #6d28d9;
+    --boton-active: #5b21b6;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    background: var(--fondo);
+    color: var(--texto);
+    font-family: "DM Sans", system-ui, sans-serif;
+    line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+p {
+    margin: 0;
+}
+
+h1,
+h2,
+h3 {
+    font-weight: 800;
+    line-height: 1.15;
+}
+
+h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    letter-spacing: -0.04em;
+}
+
+h2 {
+    font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+    letter-spacing: -0.025em;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: var(--acento);
+}
+
+:focus-visible {
+    outline: 3px solid #e9d5ff;
+    outline-offset: 4px;
+}
+
+.container {
+    width: calc(100% - 2rem);
+    max-width: 72rem;
+    margin-inline: auto;
+}
+
+.page-content {
+    flex: 1;
+    padding-block: 1.75rem 3.5rem;
+}
+
+/* Cabecera, menú y pie con Flexbox */
+.site-header,
+.site-footer {
+    background: #151021;
+}
+
+.site-header {
+    border-bottom: 1px solid var(--borde);
+}
+
+.site-footer {
+    border-top: 1px solid var(--borde);
+}
+
+.header-inner,
+.footer-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    padding-block: 0.75rem;
+}
+
+.footer-inner {
+    padding-block: 1.25rem;
+    color: var(--texto-secundario);
+    font-size: 0.875rem;
+}
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-block: 0.125rem;
+    color: var(--texto);
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    text-decoration: none;
+}
+
+.brand::before {
+    width: 0.75rem;
+    height: 0.75rem;
+    border: 2px solid var(--acento);
+    border-radius: 2px;
+    box-shadow: inset 0 0 0 2px var(--fondo), inset 0 0 0 6px var(--acento);
+    content: "";
+    transform: rotate(45deg);
+}
+
+.nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-list a {
+    display: block;
+    padding: 0.625rem 0.5rem;
+    border-radius: 0.5rem;
+    color: var(--texto-secundario);
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.nav-list a[aria-current="page"] {
+    background: #30204a;
+    color: var(--texto);
+    box-shadow: inset 0 -2px 0 var(--acento);
+}
+
+.nav-list a:hover {
+    background: var(--superficie);
+    color: var(--texto);
+}
+
+.nav-list a:active {
+    background: #44315f;
+}
+
+.skip-link {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 1;
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
+    background: var(--texto);
+    color: var(--fondo);
+    transform: translateY(-200%);
+}
+
+.skip-link:focus {
+    transform: translateY(0);
+}
+
+/* Enlaces de acción y botones */
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    min-height: 2.875rem;
+    padding: 0.625rem 1.125rem;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    background: var(--boton);
+    color: #fff;
+    font: inherit;
+    font-weight: 800;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.button:hover {
+    background: var(--boton-hover);
+}
+
+.button:active {
+    background: var(--boton-active);
+}
+
+.button:disabled {
+    border-color: var(--borde-control);
+    background: #33254b;
+    color: var(--texto-secundario);
+    cursor: default;
+}
+
+.text-link {
+    color: var(--acento);
+    font-weight: 700;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+}
+
+.text-link:hover {
+    color: var(--texto);
+}
+
+.text-link:active {
+    color: var(--texto-secundario);
+}
+
+/* Inicio y catálogo */
+.hero {
+    display: flex;
+    align-items: end;
+    min-height: 25rem;
+    padding: 10rem 1.25rem 1.5rem;
+    border: 1px solid var(--borde);
+    border-radius: 1rem;
+    background: linear-gradient(0deg, #1a102b 42%, transparent 92%),
+        url("../img/portada.jpg") center top / auto 17rem no-repeat,
+        #1a102b;
+}
+
+.hero-copy {
+    max-width: 29rem;
+}
+
+.hero h1 {
+    font-size: clamp(2.625rem, 6.2vw, 4.75rem);
+}
+
+.hero h1 span {
+    display: block;
+    color: #dbc0ff;
+}
+
+.hero p {
+    max-width: 32ch;
+    margin-block: 0.75rem 1.25rem;
+    color: var(--texto-secundario);
+}
+
+.featured {
+    margin-top: 2.25rem;
+}
+
+.featured h2 {
+    margin-bottom: 1rem;
+}
+
+.page-heading {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--borde);
+}
+
+.page-heading p {
+    margin-top: 0.5rem;
+    color: var(--texto-secundario);
+}
+
+.game-grid,
+.game-detail,
+.library-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+}
+
+.game-card,
+.panel {
+    border: 1px solid var(--borde);
+    border-radius: 0.875rem;
+    background: var(--superficie);
+}
+
+.game-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.game-card img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 460 / 215;
+    border-radius: 0.875rem 0.875rem 0 0;
+    background: var(--fondo);
+    object-fit: cover;
+}
+
+.game-card-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 1rem 1.125rem 1.125rem;
+}
+
+.game-card h2,
+.game-card h3 {
+    font-size: 1.25rem;
+}
+
+.game-card p {
+    margin-top: 0.375rem;
+    color: var(--texto-secundario);
+}
+
+.game-meta {
+    font-size: 0.875rem;
+    font-weight: 700;
+}
+
+.game-meta span {
+    margin-inline: 0.125rem;
+    color: var(--acento);
+}
+
+.game-card p:last-of-type {
+    margin-bottom: 0.75rem;
+}
+
+.game-card .text-link {
+    align-self: flex-start;
+    margin-top: auto;
+}
+
+/* Ficha del videojuego */
+.back-link {
+    display: inline-block;
+    margin-bottom: 1.25rem;
+}
+
+.detail-cover {
+    width: auto;
+    height: auto;
+    border: 1px solid var(--borde);
+    border-radius: 0.875rem;
+}
+
+.detail-body {
+    max-width: 38rem;
+}
+
+.detail-facts {
+    margin-block: 1.25rem 1.5rem;
+}
+
+.detail-facts div {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    gap: 1rem;
+    padding-block: 0.75rem;
+    border-bottom: 1px solid var(--borde);
+}
+
+.detail-facts dt {
+    color: var(--texto-secundario);
+}
+
+.detail-facts dd {
+    margin: 0;
+    font-weight: 800;
+}
+
+.detail-description p {
+    margin-top: 0.75rem;
+}
+
+.detail-body .button {
+    margin-top: 1.5rem;
+}
+
+/* Mi biblioteca. El desbordamiento se limita a la tabla. */
+.library-grid {
+    align-items: start;
+    gap: 1.5rem;
+}
+
+/* Centrar el formulario */
+.library-grid > .panel:first-child {
+    width: 100%;
+    max-width: 760px;
+    margin-inline: auto;
+}
+
+.panel {
+    min-width: 0;
+    padding: clamp(1rem, 3vw, 1.5rem);
+}
+
+.field-help,
+.table-hint,
+.status {
+    color: var(--texto-secundario);
+    font-size: 0.875rem;
+}
+
+.field-help {
+    margin-block: 0.5rem 1rem;
+}
+
+.form-field {
+    display: grid;
+    gap: 0.375rem;
+    margin-bottom: 1rem;
+}
+
+.form-field label {
+    font-weight: 700;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+    width: 100%;
+    min-width: 0;
+    min-height: 2.875rem;
+    padding: 0.625rem 0.75rem;
+    border: 1px solid var(--borde-control);
+    border-radius: 0.5rem;
+    background: var(--fondo);
+    color: var(--texto);
+    font: inherit;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+    color: var(--texto-secundario);
+}
+
+.form-field textarea {
+    resize: vertical;
+    min-height: 7.5rem;
+    line-height: 1.5;
+}
+
+/* Distribuir los campos del formulario en escritorio */
+@media (min-width: 768px) {
+    #form-videojuego {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+    }
+
+    #form-videojuego .form-field:nth-child(5),
+    #form-videojuego .button,
+    #estado-formulario {
+        grid-column: 1 / -1;
+    }
+}
+
+form .button {
+    width: 100%;
+}
+
+.table-scroll {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 0.75rem;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    min-width: 26rem;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+caption {
+    padding-bottom: 0.625rem;
+    color: var(--texto-secundario);
+    font-size: 0.875rem;
+    text-align: left;
+}
+
+th,
+td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--borde);
+    overflow-wrap: anywhere;
+}
+
+th {
+    background: #30204a;
+    font-size: 0.875rem;
+}
+
+tbody tr:nth-child(even) {
+    background: #25183b;
+}
+
+.status {
+    margin-top: 0.75rem;
+}
+
+.table-hint {
+    display: none;
+    margin-top: 0.5rem;
+}
+
+@media (max-width: 30rem) {
+    .table-hint {
+        display: block;
+    }
+}
+
+/* Tableta */
+@media (min-width: 38rem) {
+    .container {
+        width: calc(100% - 3rem);
+    }
+
+    .nav-list a {
+        padding-inline: 0.75rem;
+    }
+
+    .hero {
+        align-items: center;
+        min-height: 21rem;
+        padding: 2rem;
+        background: linear-gradient(90deg, #1a102b 12%, rgba(26, 16, 43, 0.85) 40%, transparent 75%),
+            url("../img/portada.jpg") calc(50% + 7rem) center / cover no-repeat,
+            #1a102b;
+    }
+
+    .game-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .game-detail {
+        grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+        gap: 2rem;
+        align-items: start;
+    }
+}
+
+/* Escritorio */
+@media (min-width: 60rem) {
+    .page-content {
+        padding-top: 2.25rem;
+    }
+
+    .hero {
+        min-height: 23rem;
+        padding: 2.75rem;
+        background-position: center, calc(50% + 11rem) center, center;
+    }
+
+    .game-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.25rem;
+    }
+}
+
+/* Portada genérica de registros nuevos, sin imagen asociada */
+.game-card-placeholder,
+.detail-cover-placeholder {
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, #241638, #57318a);
+    color: var(--texto);
+}
+
+.game-card-placeholder {
+    width: 100%;
+    aspect-ratio: 460 / 215;
+    border-radius: 0.875rem 0.875rem 0 0;
+    font-size: 3rem;
+}
+
+.detail-cover-placeholder {
+    min-height: 16rem;
+    border: 1px solid var(--borde);
+    border-radius: 0.875rem;
+    font-size: 5rem;
+}
+
+
+.button-eliminar {
+    padding: 0.6rem 1rem;
+    background-color: transparent;
+    color: #f87171;
+    border: 1px solid #f87171;
+    border-radius: 8px;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 600;
+}
+
+.button-eliminar:hover {
+    background-color: #7f1d1d;
+    color: white;
+}
+
+.button-eliminar:focus-visible {
+    outline: 3px solid #f87171;
+    outline-offset: 3px;
+}
+
+.button-eliminar:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+/* Dar espacio suficiente a las columnas */
+.table-scroll table {
+    width: 100%;
+    min-width: 1050px;
+    table-layout: auto;
+}
+
+/* Evitar que los títulos y números se partan */
+.table-scroll th,
+.table-scroll td {
+    word-break: normal;
+    overflow-wrap: normal;
+    vertical-align: middle;
+}
+
+.table-scroll th:nth-child(-n+4),
+.table-scroll td:nth-child(-n+4),
+.table-scroll th:last-child,
+.table-scroll td:last-child {
+    white-space: nowrap;
+}
+
+/* Permitir varias líneas solo en la descripción */
+.table-scroll th:nth-child(5),
+.table-scroll td:nth-child(5) {
+    min-width: 280px;
+    white-space: normal;
+    overflow-wrap: break-word;
+}
+
+
+
+
+
+

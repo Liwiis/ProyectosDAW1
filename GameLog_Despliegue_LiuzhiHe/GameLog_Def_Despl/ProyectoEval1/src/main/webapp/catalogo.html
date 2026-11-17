@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+          content="Explora el catálogo de GameLog: videojuegos registrados en MariaDB, sus géneros y fichas de detalle.">
+    <title>Catálogo | GameLog</title>
+    <link rel="icon" href="assets/img/favicon.svg?v=2" type="image/svg+xml">
+    <link rel="stylesheet" href="assets/css/estilos.css">
+    <script src="assets/js/catalogo.js" defer></script>
+</head>
+<body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html">GameLog</a>
+            <nav aria-label="Navegación principal">
+                <ul class="nav-list">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="catalogo.html" aria-current="page">Catálogo</a></li>
+                    <li><a href="detalle.html">Detalle</a></li>
+                    <li><a href="gestion.html">Mi biblioteca</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="contenido" class="container page-content" tabindex="-1">
+        <div class="page-heading">
+            <h1>Catálogo de videojuegos</h1>
+            <p>Explora los videojuegos registrados en GameLog.</p>
+        </div>
+
+        <!-- Las tarjetas se crean con datos del Servlet, no se escriben en HTML. -->
+        <div id="catalogo-dinamico" class="game-grid" aria-label="Videojuegos del catálogo"></div>
+        <p id="estado-catalogo" class="status" role="status" aria-live="polite">Cargando videojuegos…</p>
+        <noscript><p>Activa JavaScript para consultar los videojuegos de MariaDB.</p></noscript>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <span class="brand">GameLog</span>
+            <p>Proyecto de Diseño de Interfaces Web</p>
+        </div>
+    </footer>
+</body>
+</html>

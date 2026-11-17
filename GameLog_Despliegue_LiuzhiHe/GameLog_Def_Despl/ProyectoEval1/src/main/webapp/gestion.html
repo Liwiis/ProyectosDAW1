@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi biblioteca | GameLog</title>
+    <link rel="stylesheet" href="assets/css/estilos.css">
+    <meta name="description"
+          content="Organiza tu biblioteca de videojuegos con GameLog. Añade títulos y consulta los juegos registrados en tu colección.">
+    <link rel="icon" href="assets/img/favicon.svg?v=2" type="image/svg+xml">
+    <script src="assets/js/gestion.js" defer></script>
+</head>
+<body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html">GameLog</a>
+            <nav aria-label="Navegación principal">
+                <ul class="nav-list">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="catalogo.html">Catálogo</a></li>
+                    <li><a href="detalle.html">Detalle</a></li>
+                    <li><a href="gestion.html" aria-current="page">Mi biblioteca</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="contenido" class="container page-content" tabindex="-1">
+        <div class="page-heading">
+            <h1>Mi biblioteca</h1>
+            <p>Añade videojuegos y consulta tu colección.</p>
+        </div>
+
+        <div class="library-grid">
+            <section class="panel" aria-labelledby="nuevo-videojuego">
+                <h2 id="nuevo-videojuego">Añadir videojuego</h2>
+                <p class="field-help">Todos los campos son obligatorios.</p>
+
+                <form id="form-videojuego" method="post">
+                    <div class="form-field">
+                        <label for="titulo">Título del videojuego</label>
+                        <input id="titulo" name="titulo" type="text" required minlength="2" maxlength="100"
+                            placeholder="Ej. Elden Ring">
+                    </div>
+                    <div class="form-field">
+                        <label for="genero">Género</label>
+                        <select id="genero" name="genero" required>
+                            <option value="">Selecciona un género</option>
+                            <option>Acción</option>
+                            <option>Aventura</option>
+                            <option>Rol</option>
+                            <option>Estrategia</option>
+                            <option>Simulación</option>
+                            <option>Deportes</option>
+                            <option>Otros</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label for="plataforma">Plataforma</label>
+                        <select id="plataforma" name="plataforma" required>
+                            <option value="">Selecciona una plataforma</option>
+                            <option>PC</option>
+                            <option>PlayStation</option>
+                            <option>Xbox</option>
+                            <option>Nintendo Switch</option>
+                            <option>Otra</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label for="anio">Año de lanzamiento</label>
+                        <input id="anio" name="anio" type="number" required min="1950" max="2026" step="1"
+                            placeholder="Ej. 2022">
+                    </div>
+                    <div class="form-field">
+                        <label for="descripcion">Descripción del videojuego</label>
+                        <textarea id="descripcion" name="descripcion" rows="5" required
+                                  minlength="10" maxlength="1000"
+                                  placeholder="Describe brevemente de qué trata el juego (10 a 1000 caracteres)"></textarea>
+                    </div>
+                    <button class="button" type="submit">Guardar videojuego</button>
+                    <p id="estado-formulario" class="status" role="status" aria-live="polite"></p>
+                </form>
+            </section>
+
+            <section class="panel" aria-labelledby="videojuegos-registrados">
+                <h2 id="videojuegos-registrados">Videojuegos registrados</h2>
+                <div class="table-scroll" role="region" aria-labelledby="videojuegos-registrados" tabindex="0">
+                    <table>
+                        <caption>Listado de la biblioteca</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Título</th>
+                                <th scope="col">Género</th>
+                                <th scope="col">Plataforma</th>
+                                <th scope="col">Año</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="filas-videojuegos"></tbody>
+                    </table>
+                </div>
+                <p class="table-hint">Desliza la tabla para ver todas las columnas.</p>
+                <p id="estado-tabla" class="status" role="status">Abre GameLog desde Tomcat para consultar la biblioteca.</p>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <span class="brand">GameLog</span>
+            <p>Proyecto de Diseño de Interfaces Web</p>
+        </div>
+    </footer>
+</body>
+</html>
